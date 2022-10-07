@@ -146,19 +146,8 @@ public class VentanaPrincipal extends javax.swing.JFrame {
 
     private void btnIniciarSesionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIniciarSesionActionPerformed
         // TODO add your handling code here:
-        if (txtCorreo.getText().isEmpty() && txtContrasenia.getText().isEmpty()){
-            JOptionPane.showMessageDialog(null, "Ingrese los campos");
-        } else{
-            String correo = txtCorreo.getText();
-            String contrasenia = txtContrasenia.getText();
-            if (controGestion.ValidadCorreo(correo) != null && controGestion.validarContrasenia(contrasenia) != null){
-                new VentanaHome(controGestion).setVisible(true);
-                this.dispose();
-            }else{
-                JOptionPane.showMessageDialog(null, "No se pudo iniciar sesión");
-
-            }
-        }
+        new VentanaHome(controGestion).setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_btnIniciarSesionActionPerformed
 
     private void btnRegistroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistroActionPerformed

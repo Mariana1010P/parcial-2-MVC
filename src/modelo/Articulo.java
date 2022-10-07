@@ -23,6 +23,8 @@ public class Articulo {
         this.categoria = categoria;
         this.codProducto = codProducto;
     }
+    
+    
 
     public String getCodProducto() {
         return codProducto;

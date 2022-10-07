@@ -8,14 +8,25 @@ package modelo;
  */
 public class Venta {
 
+    private String codVenta;
     private String fechaVenta;
     private int unidadesVendidas;
+    private int totalPago;
     private Articulo articulo;
 
-    public Venta(String fechaVenta, int unidadesVendidas, Articulo articulo) {
+    public Venta(String codVenta, String fechaVenta, int unidadesVendidas, Articulo articulo) {
+        this.codVenta = codVenta;
         this.fechaVenta = fechaVenta;
         this.unidadesVendidas = unidadesVendidas;
         this.articulo = articulo;
+    }
+
+    public String getCodVenta() {
+        return codVenta;
+    }
+
+    public void setCodVenta(String codVenta) {
+        this.codVenta = codVenta;
     }
 
     public String getFechaVenta() {
@@ -34,6 +45,14 @@ public class Venta {
         this.unidadesVendidas = unidadesVendidas;
     }
 
+    public int getTotalPago() {
+        return totalPago;
+    }
+
+    public void setTotalPago(int totalPago) {
+        this.totalPago = totalPago;
+    }
+
     public Articulo getArticulo() {
         return articulo;
     }
@@ -41,6 +60,13 @@ public class Venta {
     public void setArticulo(Articulo articulo) {
         this.articulo = articulo;
     }
+    
+    public int calcularTotal(){
+        int total = unidadesVendidas * articulo.getPrecio();
+        totalPago = total;
+        return total;
+    }
+
     
     
 }

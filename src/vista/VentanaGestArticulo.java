@@ -34,6 +34,7 @@ public class VentanaGestArticulo extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jButton1 = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
         jPanel3 = new javax.swing.JPanel();
@@ -48,7 +49,9 @@ public class VentanaGestArticulo extends javax.swing.JFrame {
         btnModificar = new javax.swing.JButton();
         btnBuscar = new javax.swing.JButton();
         btnRegresar = new javax.swing.JButton();
-        cbCategoria = new javax.swing.JComboBox<>();
+        txtCategoria = new javax.swing.JTextField();
+
+        jButton1.setText("jButton1");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -115,6 +118,11 @@ public class VentanaGestArticulo extends javax.swing.JFrame {
         });
 
         btnModificar.setText("Modificar");
+        btnModificar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnModificarActionPerformed(evt);
+            }
+        });
 
         btnBuscar.setText("Buscar");
         btnBuscar.addActionListener(new java.awt.event.ActionListener() {
@@ -130,7 +138,7 @@ public class VentanaGestArticulo extends javax.swing.JFrame {
             }
         });
 
-        cbCategoria.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Categoria", "Cámaras", "Parlantes", "Audífonos", "Computadores", "Hogar inteligente" }));
+        txtCategoria.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)), "Categoria"));
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -138,22 +146,19 @@ public class VentanaGestArticulo extends javax.swing.JFrame {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGap(19, 19, 19)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(txtCodProducto, javax.swing.GroupLayout.PREFERRED_SIZE, 239, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(22, 22, 22)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(txtCodProducto, javax.swing.GroupLayout.PREFERRED_SIZE, 239, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(txtCantidad, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 236, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(txtPrecio, javax.swing.GroupLayout.PREFERRED_SIZE, 236, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addComponent(txtDescripcion, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 239, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(txtNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 239, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(55, 55, 55))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(cbCategoria, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(114, 114, 114)))
+                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(txtCantidad, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 236, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(txtPrecio, javax.swing.GroupLayout.PREFERRED_SIZE, 236, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(txtDescripcion, javax.swing.GroupLayout.PREFERRED_SIZE, 239, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtCategoria, javax.swing.GroupLayout.PREFERRED_SIZE, 239, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(3, 3, 3))
+                    .addComponent(txtNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 239, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(55, 55, 55)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(btnRegresar, javax.swing.GroupLayout.DEFAULT_SIZE, 135, Short.MAX_VALUE)
                     .addComponent(btnEliminar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -186,11 +191,11 @@ public class VentanaGestArticulo extends javax.swing.JFrame {
                         .addComponent(btnEliminar)
                         .addGap(18, 18, 18)
                         .addComponent(btnRegresar)))
-                .addGap(18, 18, 18)
+                .addGap(21, 21, 21)
                 .addComponent(txtDescripcion, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(31, 31, 31)
-                .addComponent(cbCategoria, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(45, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addComponent(txtCategoria, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(51, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -214,10 +219,11 @@ public class VentanaGestArticulo extends javax.swing.JFrame {
         int precio = Integer.parseInt(txtPrecio.getText());
         int cantidad= Integer.parseInt(txtCantidad.getText());
         String descripcion = txtDescripcion.getText();
-        String categoria = cbCategoria.getSelectedItem().toString();
+        String categoria = txtCategoria.getText();
 
         if (controGestion.guardarArticulo(codigo, nombre, precio, cantidad, descripcion, categoria)) {
             JOptionPane.showMessageDialog(this, "Guardado exitosamente");
+            limpiarCampos();
         } else {
             JOptionPane.showMessageDialog(this, "Error al guardar");
         }
@@ -230,8 +236,9 @@ public class VentanaGestArticulo extends javax.swing.JFrame {
         }else{
         String codigo = txtCodProducto.getText();
 
-        if (controGestion.eliminarUsuario(codigo)) {
+        if (controGestion.eliminarArticulo(codigo)) {
             JOptionPane.showMessageDialog(this, "Eliminado exitosamente");
+            limpiarCampos();
         } else {
             JOptionPane.showMessageDialog(this, "Error al eliminar");
         }
@@ -244,10 +251,12 @@ public class VentanaGestArticulo extends javax.swing.JFrame {
 
         if (!codigo.equals("")) {
 
-            List<String> usuario = controGestion.buscarUsuario(codigo);
+            List<String> usuario = controGestion.buscarArticulo(codigo);
             if (!usuario.get(0).equals("")) {
+                 txtCodProducto.setEnabled(false);
                 cargarInformacion(usuario);
             } else {
+                limpiarCampos();
                 JOptionPane.showMessageDialog(this, "No se encuentra");
             }
         }else{
@@ -261,13 +270,40 @@ public class VentanaGestArticulo extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_btnRegresarActionPerformed
 
+    private void btnModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModificarActionPerformed
+        // TODO add your handling code here:
+        String codigo = txtNombre.getText();
+        String nombre = txtCodProducto.getText();
+        int precio = Integer.parseInt(txtPrecio.getText());
+        int cantidad= Integer.parseInt(txtCantidad.getText());
+        String descripcion = txtDescripcion.getText();
+        String categoria = txtCategoria.getText();
+
+        if (controGestion.modificarArticulo(codigo, nombre, precio, cantidad, descripcion, categoria)) {
+            JOptionPane.showMessageDialog(this, "Modificado exitosamente");
+            limpiarCampos();
+        } else {
+            JOptionPane.showMessageDialog(this, "Error al modificar");
+        }
+    }//GEN-LAST:event_btnModificarActionPerformed
+
+    public void limpiarCampos(){
+        txtCodProducto.setText("");
+        txtNombre.setText("");
+        txtPrecio.setText("");
+        txtCantidad.setText("");
+        txtDescripcion.setText("");
+        txtCategoria.setText("");
+        txtCodProducto.setEnabled(true);
+    }
+    
     public void cargarInformacion(List<String> temp) {
         txtCodProducto.setText(temp.get(0));
         txtNombre.setText(temp.get(1));
         txtPrecio.setText(temp.get(2));
         txtCantidad.setText(temp.get(3));
         txtDescripcion.setText(temp.get(4));
-        cbCategoria.setSelectedItem(temp.get(5));
+        txtCategoria.setText(temp.get(5));
     }
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -276,12 +312,13 @@ public class VentanaGestArticulo extends javax.swing.JFrame {
     private javax.swing.JButton btnGuardar1;
     private javax.swing.JButton btnModificar;
     private javax.swing.JButton btnRegresar;
-    private javax.swing.JComboBox<String> cbCategoria;
+    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JTextField txtCantidad;
+    private javax.swing.JTextField txtCategoria;
     private javax.swing.JTextField txtCodProducto;
     private javax.swing.JTextField txtDescripcion;
     private javax.swing.JTextField txtNombre;

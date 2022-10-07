@@ -23,3 +23,11 @@ cantidad int,
 descripcion varchar(50),
 categoria varchar(30));
 
+create table venta(
+codVenta varchar(20) primary key,
+fechaVenta varchar (8),
+unidadesVendidad int,
+totalPago int,
+codProductoVenta varchar(10),
+foreign key (codProductoVenta) references articulo (codProducto));
+

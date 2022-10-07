@@ -17,6 +17,7 @@ public class VentanaRegistro extends javax.swing.JFrame {
     ControladorGestion controGestion;
     /**
      * Creates new form VentanaRegistro
+     * @param controGestion
      */
     public VentanaRegistro(ControladorGestion controGestion) {
         initComponents();

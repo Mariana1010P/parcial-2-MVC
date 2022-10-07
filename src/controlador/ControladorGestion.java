@@ -7,9 +7,11 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.table.DefaultTableModel;
 import modelo.Articulo;
 import modelo.Conexion;
 import modelo.Usuario;
+import modelo.Venta;
 
 /**
  *
@@ -31,7 +33,7 @@ public class ControladorGestion {
         ("insert into usuario(cedula,nombre,apellido,correo,contrasenia) "
                 + "values('" + usuario.getCedula()+ "','" +
                 usuario.getNombre()+ "','" +
-                usuario.getApellido() + "'," +
+                usuario.getApellido() + "','" +
                 usuario.getCorreo()+ "'," +
                 usuario.getContrasenia()+ ")");
             conexion.desconectar();          
@@ -44,14 +46,14 @@ public class ControladorGestion {
 
     public List<String> buscarUsuario(String cedula) {
         
-        List<String> temp = new ArrayList<String>();
+        List<String> temp = new ArrayList<>();
         
         conexion.conectar();
 
         try {
             conexion.setResultadoDB(conexion.getSentenciaSQL().
-                    executeQuery("select cedula,nombre,apellido,"
-                            + "correo,contraseña from usuario where "
+                    executeQuery("select cedula,nombre,apellido,correo,"
+                            + "contrasenia from usuario where "
                             + "cedula='" + cedula + "'"));        
 
             if (conexion.getResultadoDB().next()) {
@@ -59,6 +61,7 @@ public class ControladorGestion {
                 temp.add(conexion.getResultadoDB().getString("nombre"));
                 temp.add(conexion.getResultadoDB().getString("apellido"));
                 temp.add(conexion.getResultadoDB().getString("correo"));
+                temp.add(conexion.getResultadoDB().getString("contrasenia"));
             }
             conexion.desconectar();                
         } catch (SQLException ex) {            
@@ -77,8 +80,8 @@ public class ControladorGestion {
             conexion.getSentenciaSQL().execute
         ("update usuario set nombre='" + usuario.getNombre() + 
                 "',apellido='" + usuario.getApellido() + "'," + 
-                "correo=" + usuario.getCorreo()+"'," +
-                "contrasenia=" + usuario.getContrasenia()      
+                "correo='" + usuario.getCorreo()+"'," +
+                "contrasenia=" + usuario.getContrasenia()     
                 + " where cedula='" + usuario.getCedula()+"'");
             conexion.desconectar();          
             return true;
@@ -101,52 +104,6 @@ public class ControladorGestion {
         }
     }
     
-    public List<String> ValidadCorreo(String correo) {
-        
-        List<String> temp = new ArrayList<String>();
-        
-        conexion.conectar();
-
-        try {
-            conexion.setResultadoDB(conexion.getSentenciaSQL().
-                    executeQuery("select cedula,nombre,apellido,"
-                            + "correo,contrasenia from usuario where "
-                            + "correo=" + correo+"'")); 
-            if(conexion.getResultadoDB().next()){
-                temp.add(conexion.getResultadoDB().getString("correo"));
-            }
-            conexion.desconectar();                
-        } catch (SQLException ex) {            
-            Logger.getLogger(ControladorGestion.class.getName())
-                    .log(Level.SEVERE, null, ex);
-            conexion.desconectar();
-        }
-        return temp;
-    }
-    
-    public List<String> validarContrasenia(String contrasenia) {
-        
-        List<String> temp = new ArrayList<String>();
-        
-        conexion.conectar();
-
-        try {
-            conexion.setResultadoDB(conexion.getSentenciaSQL().
-                    executeQuery("select cedula,nombre,apellido,"
-                            + "correo,contrasenia from usuario where "
-                            + "contrasenia=" + contrasenia+"'")); 
-            if(conexion.getResultadoDB().next()){
-                temp.add(conexion.getResultadoDB().getString("contrasenia"));
-            }
-            conexion.desconectar();                
-        } catch (SQLException ex) {            
-            Logger.getLogger(ControladorGestion.class.getName())
-                    .log(Level.SEVERE, null, ex);
-            conexion.desconectar();
-        }
-        return temp;
-    }
-    
 //-----------------------------------------------------------------------------
     
     
@@ -159,8 +116,8 @@ public class ControladorGestion {
         ("insert into articulo(codProducto,nombre,precio,cantidad,descripcion,categoria) "
                 + "values('" + articulo.getCodProducto()+ "','" +
                 articulo.getNombre() + "','" +
-                articulo.getPrecio()+ "'," +
-                articulo.getCantidad()+ "'," +
+                articulo.getPrecio()+ "','" +
+                articulo.getCantidad()+ "','" +
                 articulo.getDescripcion()+  "'," +
                 articulo.getCategoria()+")");
             conexion.desconectar();          
@@ -200,7 +157,7 @@ public class ControladorGestion {
         return temp;
     }
 
-    public boolean modificar(String codProducto,String nombre, int precio,
+    public boolean modificarArticulo(String codProducto,String nombre, int precio,
             int cantidad, String descripcion, String categoria) {
         Articulo articulo = new Articulo(codProducto,nombre,precio,cantidad,descripcion,categoria);
         conexion.conectar();
@@ -208,8 +165,8 @@ public class ControladorGestion {
             conexion.getSentenciaSQL().execute
         ("update articulo set nombre='" + articulo.getNombre() + 
                 "',precio='" + articulo.getPrecio() + "'," + 
-                "cantidad=" + articulo.getCantidad() + "'," +
-                "descripcion=" + articulo.getDescripcion() + "'," +
+                "cantidad='" + articulo.getCantidad() + "'," +
+                "descripcion'=" + articulo.getDescripcion() + "'," +
                 "categoria=" + articulo.getCategoria()
                 + " where codProducto='" + articulo.getCodProducto()+"'");
             conexion.desconectar();          
@@ -234,4 +191,58 @@ public class ControladorGestion {
             return false;
         }
     }
+    
+     public DefaultTableModel listarArticulo() {
+        DefaultTableModel temporal;
+        String nombreColumnas[] =
+        {
+            "Codigo articulo", "nombre", "precio", "cantidad","descripcion","categoria"
+        };
+        temporal = new DefaultTableModel(new Object[][]{}, nombreColumnas);
+        conexion.conectar();
+        try
+        {
+            conexion.setResultadoDB(conexion.getSentenciaSQL().
+                    executeQuery("select codProducto,nombre,precio,cantidad,descripcion,categoria"
+                            + " from articulo order by codProducto"));
+            while (conexion.getResultadoDB().next())
+            {
+                temporal.addRow(new Object[]
+                {
+                    conexion.getResultadoDB().getString("codProducto"),
+                    conexion.getResultadoDB().getString("nombre"),
+                    conexion.getResultadoDB().getInt("precio"),
+                    conexion.getResultadoDB().getInt("cantidad"),
+                    conexion.getResultadoDB().getString("descripcion"),
+                    conexion.getResultadoDB().getString("categoria"),
+                });
+            }
+            conexion.desconectar();
+        } catch (SQLException ex)
+        {
+            Logger.getLogger(ControladorGestion.class.getName()).
+                    log(Level.SEVERE, null, ex);
+            conexion.desconectar();
+        }
+        return temporal;
+    }
+    
+     public boolean guardarVenta(Venta venta) {
+        conexion.conectar();
+        try {
+            conexion.getSentenciaSQL().execute
+        ("insert into articulo(codVenta,fechaVenta,unidadesVendidad,codProductoVenta) "
+                + "values('" + venta.getCodVenta()+ "','" +
+                venta.getFechaVenta() + "','" +
+                venta.getUnidadesVendidas()+ "'," +
+                venta.getArticulo()+")");
+            conexion.desconectar();          
+            return true;
+        } catch (SQLException ex) {
+            conexion.desconectar();          
+            return false;
+        }
+    }
+     
+     
 }
